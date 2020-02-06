@@ -41,15 +41,14 @@ int main() {
       maze[y][x]=tempString[x];
       // Check for 'S' and 'F' here and use that to
       // set values of startX, startY, endX and endY
-      if (tempString[x] == 'F') {
-        endX = x;
-				endY = y;
-			}
       if (tempString[x]== 'S') {
 				startX = x;
 				startY = y;
 			}
-
+      if (tempString[x] == 'F') {
+        endX = x;
+				endY = y;
+			}
       wasHere[y][x] = false;     
       correctPath[y][x] = false;
     }
