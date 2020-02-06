@@ -35,24 +35,28 @@ int main() {
   */
 
 
-  for(y=0; y < height; y++) {
-    fgets(tempString, width+2, stdin);  // Read #width chars, plus newline and NULL into tempString
-    for(x=0; x < width; x++) {          // Copy only the actual #width chars into the maze
-      maze[y][x]=tempString[x];
-      // Check for 'S' and 'F' here and use that to
-      // set values of startX, startY, endX and endY
-      if (tempString[x]== 'S') {
+ char tempc;
+
+	for (y=0; y < height; y++) {
+		for (x=0; x <  width; x++) {
+			scanf("%c", &tempc);
+			maze[y][x] = tempc;
+
+			//check for S and F and set values as startx,y endx,y
+			if (tempc == 'F') {
+				endX = x;
+				endY = y;
+			}
+      if (tempc == 'S') {
 				startX = x;
 				startY = y;
 			}
-      if (tempString[x] == 'F') {
-        endX = x;
-				endY = y;
-			}
-      wasHere[y][x] = false;     
-      correctPath[y][x] = false;
-    }
-  }
+
+			wasHere[y][x] = false;
+			correctPath[y][x] = false;
+		}
+		scanf("%c", &tempc); 
+	}
 
   recursiveSolve(startX, startY);
 // Code to print the output maze
