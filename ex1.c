@@ -76,7 +76,7 @@ for (y=0; y < height; y++){
 }
 
 
-boolean recursiveSolve(int x, int y) {
+int recursiveSolve(int x, int y) {
     if (x == endX && y == endY) return true; // If you reached the end
     if (maze[y][x] == 2 || wasHere[y][x]) return false;  
     // If you are on a wall or already were here
