@@ -35,52 +35,50 @@ int main() {
   */
 
 
- char tempc;
-
-	for (y=0; y < height; y++) {
-		for (x=0; x <  width; x++) {
-			scanf("%c", &tempc);
-			maze[y][x] = tempc;
-
-			//check for S and F and set values as startx,y endx,y
-			if (tempc == 'S') {
+  for(y=0; y < height; y++) {
+    fgets(tempString, width+2, stdin);  // Read #width chars, plus newline and NULL into tempString
+    for(x=0; x < width; x++) {          // Copy only the actual #width chars into the maze
+      maze[y][x]=tempString[x];
+      // Check for 'S' and 'F' here and use that to
+      // set values of startX, startY, endX and endY
+      if (tempString[x] == 'F') {
+        endX = x;
+				endY = y;
+			}
+      if (tempString[x]== 'S') {
 				startX = x;
 				startY = y;
 			}
-			if (tempc == 'F') {
-				endX = x;
-				endY = y;
-			}
 
-			wasHere[y][x] = false;
-			correctPath[y][x] = false;
-		}
-		scanf("%c", &tempc); 
-	}
+      wasHere[y][x] = false;     
+      correctPath[y][x] = false;
+    }
+  }
 
-recursiveSolve(startX, startY);
-		// code to print the output maze
-	
-  
-for (y=0; y < height; y++) {
-  for (x=0; x < width; x++) {
-    if (x == endX && y == endY)
-    maze[y][x] = 'F';
-			if (x == startX && y == startY)
-				maze[y][x] = 'S';
-			if (correctPath[y][x] == true && maze[y][x] != 'S' && maze[y][x] != 'F')
-				maze[y][x] = '.';
+  recursiveSolve(startX, startY);
+// Code to print the output maze
+for (y=0; y < height; y++){
+  for (x=0; x < width; x++){
+    if (x == startX && y == startY){
+      maze[y][x] = 'S';
+    }
+    if (x == endX && y == endY){
+      maze[y][x] = 'F';
+    }
+    if (correctPath[y][x] == true && maze[y][x] != 'S' && maze[y][x] != 'F') {
+      maze[y][x] = '.';
 			printf("%c", maze[y][x]);
-		}
-		printf("\n");
-	}
+    }
+  }
+  printf("\n");
+}
 
 }
 
 
 int recursiveSolve(int x, int y) {
     if (x == endX && y == endY) return true; // If you reached the end
-    if (maze[y][x] == 2 || wasHere[y][x]) return false;  
+    if (maze[y][x] == '*' || wasHere[y][x]) return false;  
     // If you are on a wall or already were here
     wasHere[y][x] = true;
     if (x != 0) // Checks if not on left edge
