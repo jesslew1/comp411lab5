@@ -43,13 +43,13 @@ int main() {
 			maze[y][x] = tempc;
 
 			//check for S and F and set values as startx,y endx,y
+			if (tempc == 'S') {
+				startX = x;
+				startY = y;
+			}
 			if (tempc == 'F') {
 				endX = x;
 				endY = y;
-			}
-      if (tempc == 'S') {
-				startX = x;
-				startY = y;
 			}
 
 			wasHere[y][x] = false;
