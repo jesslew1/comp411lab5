@@ -13,8 +13,8 @@ void nurseryrhyme(int current) {
         printf("She swallowed the %s to catch the %s;\n", animals[current - 1], animals[current]);
     if(current < number-1)                     // if we are not at the last animal, make the recursive call
         nurseryrhyme(current+1);
-        printf("%s", current, "");             // print something after the recursive call
-        printf("I don't know why she swallowed a %s - %s", animals[current], lyrics[current]);
+    printf("%s", current, "");             // print something after the recursive call
+    printf("I don't know why she swallowed a %s - %s", animals[current], lyrics[current]);
 }
 
 
