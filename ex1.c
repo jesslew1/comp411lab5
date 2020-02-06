@@ -58,23 +58,22 @@ int main() {
 		scanf("%c", &tempc); 
 	}
 
-  recursiveSolve(startX, startY);
-// Code to print the output maze
-for (y=0; y < height; y++){
-  for (x=0; x < width; x++){
-    if (x == startX && y == startY){
-      maze[y][x] = 'S';
-    }
-    if (x == endX && y == endY){
-      maze[y][x] = 'F';
-    }
-    if (correctPath[y][x] == true && maze[y][x] != 'S' && maze[y][x] != 'F') {
-      maze[y][x] = '.';
+recursiveSolve(startX, startY);
+		// code to print the output maze
+	
+  
+for (y=0; y < height; y++) {
+  for (x=0; x < width; x++) {
+    if (x == endX && y == endY)
+    maze[y][x] = 'F';
+			if (x == startX && y == startY)
+				maze[y][x] = 'S';
+			if (correctPath[y][x] == true && maze[y][x] != 'S' && maze[y][x] != 'F')
+				maze[y][x] = '.';
 			printf("%c", maze[y][x]);
-    }
-  }
-  printf("\n");
-}
+		}
+		printf("\n");
+	}
 
 }
 
