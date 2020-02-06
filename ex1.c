@@ -13,7 +13,7 @@ int width, height;
 int startX, startY, endX, endY;
 char tempString[MAX+2];   // To read in one line of the maze
 
-//int recursiveSolve(int x, int y);
+int recursiveSolve(int x, int y);
 
 int main() {
 
