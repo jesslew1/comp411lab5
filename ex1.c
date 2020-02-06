@@ -35,19 +35,56 @@ int main() {
   */
 
 
- 	char tempC;
+//   for(y=0; y < height; y++) {
+//     fgets(tempString, width+2, stdin);  // Read #width chars, plus newline and NULL into tempString
+//     for(x=0; x < width; x++) {          // Copy only the actual #width chars into the maze
+//       maze[y][x]=tempString[x];
+//       // Check for 'S' and 'F' here and use that to
+//       // set values of startX, startY, endX and endY
+//       if (tempString[x] == 'F') {
+//         endX = x;
+// 				endY = y;
+// 			}
+//       if (tempString[x]== 'S') {
+// 				startX = x;
+// 				startY = y;
+// 			}
+
+//       wasHere[y][x] = false;     
+//       correctPath[y][x] = false;
+//     }
+//   }
+
+//   recursiveSolve(startX, startY);
+// // Code to print the output maze
+// for (y=0; y < height; y++){
+//   for (x=0; x < width; x++){
+//     if (x == startX && y == startY){
+//       maze[y][x] = 'S';
+//     }
+//     if (x == endX && y == endY){
+//       maze[y][x] = 'F';
+//     }
+//     if (correctPath[y][x] == true && maze[y][x] != 'S' && maze[y][x] != 'F') {
+//       maze[y][x] = '.';
+// 			printf("%c", maze[y][x]);
+//     }
+//   }
+//   printf("\n");
+// }
+char tempchar;
 
 	for (y=0; y < height; y++) {
 		for (x=0; x <  width; x++) {
-			scanf("%c", &tempC);
-			maze[y][x] = tempC;
+			scanf("%c", &tempchar);
+			maze[y][x] = tempchar;
 
 			//check for S and F and set values as startx,y endx,y
-			if (tempC == 'S') {
+			if (tempchar == 'S') {
 				startX = x;
 				startY = y;
 			}
-			if (tempC == 'F') {
+			if (tempchar == 'F') {
 				endX = x;
 				endY = y;
 			}
@@ -55,26 +92,24 @@ int main() {
 			wasHere[y][x] = false;
 			correctPath[y][x] = false;
 		}
-		scanf("%c", &tempC); 
+		scanf("%c", &tempchar); 
 	}
 
-  recursiveSolve(startX, startY);
-// Code to print the output maze
-for (y=0; y < height; y++){
-  for (x=0; x < width; x++){
-    if (x == startX && y == startY){
-      maze[y][x] = 'S';
-    }
-    if (x == endX && y == endY){
-      maze[y][x] = 'F';
-    }
-    if (correctPath[y][x] == true && maze[y][x] != 'S' && maze[y][x] != 'F') {
-      maze[y][x] = '.';
+	recursiveSolve(startX, startY);
+		// code to print the output maze
+		
+	for (y=0; y < height; y++) {
+		for (x=0; x < width; x++) {
+			if (x == endX && y == endY)
+				maze[y][x] = 'F';
+			if (x == startX && y == startY)
+				maze[y][x] = 'S';
+			if (correctPath[y][x] == true && maze[y][x] != 'S' && maze[y][x] != 'F')
+				maze[y][x] = '.';
 			printf("%c", maze[y][x]);
-    }
-  }
-  printf("\n");
-}
+		}
+		printf("\n");
+	}
 
 }
 
